@@ -1,3 +1,4 @@
+/*
 package transforPDF;
 
 import java.io.File;
@@ -19,7 +20,8 @@ public class TransferUtils {
 	private static final int msoTrue = -1;
 	private static final int msofalse = 0;
 
-	/**
+	*/
+/**
 	 * <p>
 	 * Title: convert2PDF
 	 * </p>
@@ -29,7 +31,8 @@ public class TransferUtils {
 	 * 
 	 * @param inputFile
 	 * @return
-	 */
+	 *//*
+
 	public static File convert2PDF(String inputFile) {
 		return convert2PDF(inputFile, null);
 	}
@@ -77,7 +80,9 @@ public class TransferUtils {
 				TOPDFUtil util = new TOPDFUtil();
 				transFlag = util.openOfficeToPDF(file, pdf);
 			}
-			/* 暂时注释（避免版权问题） */
+			*/
+/* 暂时注释（避免版权问题） *//*
+
 //	        	if(!transFlag) {
 //	        		ObjectToPDFUtils.wordToPDFUtils(inputFile,pdf.getAbsolutePath());
 //	        	}
@@ -106,13 +111,15 @@ public class TransferUtils {
 		return transFlag ? pdf : null;
 	}
 
-	/**
+	*/
+/**
 	 * @Description: wrod to pdf
 	 * @author mazc
 	 * @param inputFile
 	 * @param pdfFile
 	 * @return
-	 */
+	 *//*
+
 	private static boolean word2PDFAsFixedFormat(String inputFile, String pdfFile) {
 		boolean changeFlag = false;
 		Dispatch doc = null;
@@ -154,13 +161,15 @@ public class TransferUtils {
 		return changeFlag;
 	}
 
-	/**
+	*/
+/**
 	 * @Description: wrod to pdf
 	 * @author guoyr
 	 * @param inputFile
 	 * @param pdfFile
 	 * @return
-	 */
+	 *//*
+
 	private static boolean wordSaveAsPdf(String inputFile, String pdfFile) {
 		boolean changeFlag = false;
 		Dispatch doc = null;
@@ -230,13 +239,15 @@ public class TransferUtils {
 		return true;
 	}
 
-	/**
+	*/
+/**
 	 * @Description:
 	 * @author guoyr
 	 * @param inputFile
 	 * @param pdfFile
 	 * @return
-	 */
+	 *//*
+
 	private static boolean excel2PDFAsFixedFormat(String inputFile, String pdfFile) {
 		boolean changeFlag = false;
 		Dispatch excel = null;
@@ -385,13 +396,15 @@ public class TransferUtils {
 		return changeFlag;
 	}
 
-	/**
+	*/
+/**
 	 * @Description:
 	 * @author guoyr
 	 * @param inputFile
 	 * @param pdfFile
 	 * @return
-	 */
+	 *//*
+
 	private static boolean ppt2PDF(String inputFile, String pdfFile) {
 		boolean changeFlag = false;
 		ActiveXComponent app = null;
@@ -447,3 +460,4 @@ public class TransferUtils {
 //       		tool.convert2PDF("D:\\贾俊.docx", "D:\\贾俊.pdf");
 //	}
 //}
+*/

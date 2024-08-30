@@ -572,99 +572,99 @@ public class test {
 
     }
 
-    @Test
-    public void test18(){
-
-        //list1是sap的数据
-        ArrayList<SapZoutbudget> list1=new ArrayList();
-        SapZoutbudget sp1=new SapZoutbudget(1,"One",BigDecimal.ONE);
-        SapZoutbudget sp2=new SapZoutbudget(2,"Two",BigDecimal.TEN);
-        SapZoutbudget sp3=new SapZoutbudget(3,"Three",BigDecimal.ONE);
-        SapZoutbudget sp4=new SapZoutbudget(4,"Four",BigDecimal.ZERO);
-        SapZoutbudget sp5=new SapZoutbudget(5,"Five",BigDecimal.ZERO);
-        SapZoutbudget sp6=new SapZoutbudget(6,"Six",BigDecimal.ZERO);
-        SapZoutbudget sp7=new SapZoutbudget(6,"Six",BigDecimal.ZERO);
-        SapZoutbudget sp11=new SapZoutbudget(6,"eleven",BigDecimal.ZERO);
-
-        list1.add(sp1);
-        list1.add(sp2);
-        list1.add(sp3);
-        list1.add(sp4);
-        list1.add(sp5);
-        list1.add(sp6);
-        list1.add(sp7);
-        list1.add(sp11);
-
-
-        //list2是年度计划
-        ArrayList<SapZoutbudget> list2=new ArrayList();
-        SapZoutbudget sp8=new SapZoutbudget(8,"eight",BigDecimal.ZERO);
-        SapZoutbudget sp9=new SapZoutbudget(9,"nine",BigDecimal.ZERO);
-        SapZoutbudget sp10=new SapZoutbudget(10,"ten",BigDecimal.ZERO);
-
-
-        /*list2.add(sp1);
-        list2.add(sp2);
-        list2.add(sp3);
-        list2.add(sp4);
-        list2.add(sp5);
-        list2.add(sp6);*/
-        list2.add(sp8);
-        list2.add(sp9);
-        list2.add(sp10);
-
-        List<String> costChecks=new ArrayList<>();
-
-        Optional.ofNullable(list1.stream().collect(Collectors.collectingAndThen(
-                Collectors.toCollection(() -> new TreeSet<>(
-                        //根据成本中心编码和承诺项编码构造TreeSet
-                        Comparator.comparing(sapZoutbudget
-                                -> getCostAllocation(sapZoutbudget.getI(), sapZoutbudget.getS()
-                        )))), sapZoutbudgetTreeSet -> sapZoutbudgetTreeSet.stream()
-                        .map(sapZoutbudget -> getCostAllocation(sapZoutbudget.getI(), sapZoutbudget.getS()))
-                        ////根据TreeSet构造List<String>的结果集，储存成本中心编码-承诺项编码
-                        .collect(Collectors.collectingAndThen(Collectors.toList(),list->list.stream()
-                                //过滤出上一步结果集中与年度计划数据中的交集
-                                .filter(key->!list2.stream()
-                                        .map(budgetAnnualPlan->getCostAllocation(budgetAnnualPlan.getI(),budgetAnnualPlan.getS()))
-                                        .collect(Collectors.toList()).contains(key))
-                                .collect(Collectors.collectingAndThen(Collectors.toList(),
-                                        //对交集数据进行两次操作
-                                        //年度计划中不存在相同成本中心编码-承诺向的数据和sap中不存在成本中心编码-承诺项编码的数据进行两次操作
-                                        intersect -> list2.stream()
-                                                .map(budgetAnnualPlan->getCostAllocation(budgetAnnualPlan.getI(),budgetAnnualPlan.getS()))
-                                                .filter(x->!intersect.contains(x))
-                                                .collect(Collectors.collectingAndThen(Collectors.toList(),
-                                                        //对sap中不存在的成本中心编码-承诺向编码数据
-                                                        //这个annualDiff是年度计划表的差集,继续获得sapZoutbudgetTreeSet的差集
-                                                        annualDiff -> Stream.of(sapZoutbudgetTreeSet.stream()
-                                                                .map(sapZoutbudget -> getCostAllocation(sapZoutbudget.getI(),sapZoutbudget.getS()))
-                                                                .filter(x->!intersect.contains(x))
-                                                                //对于sap中存在，年度计划中不存在的数据（sap的差集）加入sap1-12期的金额全部为0或null视为无异常
-                                                                .filter(x->{
-                                                                    //缺少Hutool工具
-                                                                    //String cost=CollUtil.get(StrUtil.split(x,StrPool.DASHED),0);
-                                                                    //String allocation=CollUtil.get(StrUtil.split(x,StrPool.DASHED),1);
-                                                                    String cost=x.substring(0,x.indexOf("-"));
-                                                                    String allocation=x.substring(x.indexOf("-")+1,x.length());
-                                                                    BigDecimal bigDecimal = list1.stream()
-                                                                            .filter(s -> s.getI().equals(cost) && s.getS().equals(allocation))
-                                                                            .map(SapZoutbudget::getMoney)
-                                                                            .filter(money -> money != null && money.compareTo(BigDecimal.ZERO) != 0)
-                                                                            .findAny().orElse(null);
-                                                                    return bigDecimal!=null;
-                                                                }).collect(Collectors.toList()),annualDiff)
-                                                                .flatMap(Collection::stream)
-                                                                .collect(Collectors.toList())))))))))
-                .stream().map(result->result.substring(0,result.indexOf("-")))
-                .distinct()
-                .collect(Collectors.toList()))
-                .ifPresentOrElse(costChecks::addAll,()-> System.out.println(
-                        "*********************onCheck end***********************年度计划-sap数据不存在差集数据"));
-
-        System.out.println("结果："+costChecks);
-
-    }
+ //   @Test
+//    public void test18(){
+//
+//        //list1是sap的数据
+//        ArrayList<SapZoutbudget> list1=new ArrayList();
+//        SapZoutbudget sp1=new SapZoutbudget(1,"One",BigDecimal.ONE);
+//        SapZoutbudget sp2=new SapZoutbudget(2,"Two",BigDecimal.TEN);
+//        SapZoutbudget sp3=new SapZoutbudget(3,"Three",BigDecimal.ONE);
+//        SapZoutbudget sp4=new SapZoutbudget(4,"Four",BigDecimal.ZERO);
+//        SapZoutbudget sp5=new SapZoutbudget(5,"Five",BigDecimal.ZERO);
+//        SapZoutbudget sp6=new SapZoutbudget(6,"Six",BigDecimal.ZERO);
+//        SapZoutbudget sp7=new SapZoutbudget(6,"Six",BigDecimal.ZERO);
+//        SapZoutbudget sp11=new SapZoutbudget(6,"eleven",BigDecimal.ZERO);
+//
+//        list1.add(sp1);
+//        list1.add(sp2);
+//        list1.add(sp3);
+//        list1.add(sp4);
+//        list1.add(sp5);
+//        list1.add(sp6);
+//        list1.add(sp7);
+//        list1.add(sp11);
+//
+//
+//        //list2是年度计划
+//        ArrayList<SapZoutbudget> list2=new ArrayList();
+//        SapZoutbudget sp8=new SapZoutbudget(8,"eight",BigDecimal.ZERO);
+//        SapZoutbudget sp9=new SapZoutbudget(9,"nine",BigDecimal.ZERO);
+//        SapZoutbudget sp10=new SapZoutbudget(10,"ten",BigDecimal.ZERO);
+//
+//
+//        /*list2.add(sp1);
+//        list2.add(sp2);
+//        list2.add(sp3);
+//        list2.add(sp4);
+//        list2.add(sp5);
+//        list2.add(sp6);*/
+//        list2.add(sp8);
+//        list2.add(sp9);
+//        list2.add(sp10);
+//
+//        List<String> costChecks=new ArrayList<>();
+//
+//        Optional.ofNullable(list1.stream().collect(Collectors.collectingAndThen(
+//                Collectors.toCollection(() -> new TreeSet<>(
+//                        //根据成本中心编码和承诺项编码构造TreeSet
+//                        Comparator.comparing(sapZoutbudget
+//                                -> getCostAllocation(sapZoutbudget.getI(), sapZoutbudget.getS()
+//                        )))), sapZoutbudgetTreeSet -> sapZoutbudgetTreeSet.stream()
+//                        .map(sapZoutbudget -> getCostAllocation(sapZoutbudget.getI(), sapZoutbudget.getS()))
+//                        ////根据TreeSet构造List<String>的结果集，储存成本中心编码-承诺项编码
+//                        .collect(Collectors.collectingAndThen(Collectors.toList(),list->list.stream()
+//                                //过滤出上一步结果集中与年度计划数据中的交集
+//                                .filter(key->!list2.stream()
+//                                        .map(budgetAnnualPlan->getCostAllocation(budgetAnnualPlan.getI(),budgetAnnualPlan.getS()))
+//                                        .collect(Collectors.toList()).contains(key))
+//                                .collect(Collectors.collectingAndThen(Collectors.toList(),
+//                                        //对交集数据进行两次操作
+//                                        //年度计划中不存在相同成本中心编码-承诺向的数据和sap中不存在成本中心编码-承诺项编码的数据进行两次操作
+//                                        intersect -> list2.stream()
+//                                                .map(budgetAnnualPlan->getCostAllocation(budgetAnnualPlan.getI(),budgetAnnualPlan.getS()))
+//                                                .filter(x->!intersect.contains(x))
+//                                                .collect(Collectors.collectingAndThen(Collectors.toList(),
+//                                                        //对sap中不存在的成本中心编码-承诺向编码数据
+//                                                        //这个annualDiff是年度计划表的差集,继续获得sapZoutbudgetTreeSet的差集
+//                                                        annualDiff -> Stream.of(sapZoutbudgetTreeSet.stream()
+//                                                                .map(sapZoutbudget -> getCostAllocation(sapZoutbudget.getI(),sapZoutbudget.getS()))
+//                                                                .filter(x->!intersect.contains(x))
+//                                                                //对于sap中存在，年度计划中不存在的数据（sap的差集）加入sap1-12期的金额全部为0或null视为无异常
+//                                                                .filter(x->{
+//                                                                    //缺少Hutool工具
+//                                                                    //String cost=CollUtil.get(StrUtil.split(x,StrPool.DASHED),0);
+//                                                                    //String allocation=CollUtil.get(StrUtil.split(x,StrPool.DASHED),1);
+//                                                                    String cost=x.substring(0,x.indexOf("-"));
+//                                                                    String allocation=x.substring(x.indexOf("-")+1,x.length());
+//                                                                    BigDecimal bigDecimal = list1.stream()
+//                                                                            .filter(s -> s.getI().equals(cost) && s.getS().equals(allocation))
+//                                                                            .map(SapZoutbudget::getMoney)
+//                                                                            .filter(money -> money != null && money.compareTo(BigDecimal.ZERO) != 0)
+//                                                                            .findAny().orElse(null);
+//                                                                    return bigDecimal!=null;
+//                                                                }).collect(Collectors.toList()),annualDiff)
+//                                                                .flatMap(Collection::stream)
+//                                                                .collect(Collectors.toList())))))))))
+//                .stream().map(result->result.substring(0,result.indexOf("-")))
+//                .distinct()
+//                .collect(Collectors.toList()))
+//                .ifPresentOrElse(costChecks::addAll,()-> System.out.println(
+//                        "*********************onCheck end***********************年度计划-sap数据不存在差集数据"));
+//
+//        System.out.println("结果："+costChecks);
+//
+//    }
 
 
 

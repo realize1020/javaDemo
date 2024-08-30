@@ -2,8 +2,6 @@
   <library name="Maven: cn.hutool:hutool-all:5.5.0">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/cn/hutool/hutool-all/5.5.0/hutool-all-5.5.0.jar!/" />
-      <root url="jar://D:/book/word转pdf/pdfbox-1.8.0.jar!/" />
-      <root url="jar://D:/book/word转pdf/jodconverter-2.2.2.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/cn/hutool/hutool-all/5.5.0/hutool-all-5.5.0-javadoc.jar!/" />
